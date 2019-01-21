@@ -15,3 +15,4 @@ Hello, World!
 ## Part 1 Conventional Programming
 
 * [ch02 Pattern Matching](pattern-matching.md)
+* [ch03 Immutability](immutability.md)
