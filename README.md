@@ -11,3 +11,7 @@ iex(1)> c "intro/hello.exs"
 Hello, World!
 []
 ```
+
+## Part 1 Conventional Programming
+
+* [ch02 Pattern Matching](pattern-matching.md)
