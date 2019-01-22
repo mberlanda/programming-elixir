@@ -17,3 +17,4 @@ Hello, World!
 * [ch02 Pattern Matching](pattern-matching.md)
 * [ch03 Immutability](immutability.md)
 * [ch04 Elixir Basics](basic-types.md)
+* [ch05 Anonymous Functions](functions.md)
