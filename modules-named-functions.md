@@ -23,3 +23,20 @@ iex(3)> Times.double("car")
 ```
 
 The identifier of a named function in Elixir are its name and arity.
+
+## The Function's Body Is a Block
+
+Exercise 2
+```exs
+$ iex times.exs
+iex(1)> Times.triple(2)
+6
+iex(2)> Times.quadruple(2)
+8
+
+$ iex
+iex(1)> c "times.exs"
+[Times]
+iex(2)> Times.quadruple(2)
+8
+```
