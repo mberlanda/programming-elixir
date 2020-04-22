@@ -79,3 +79,44 @@ iex(5)> Ex5.gcd(6,12)
 iex(6)> Ex5.gcd(6,15)
 3
 ```
+
+## Guard Clauses
+
+```exs
+iex(1)> c "guard.exs"
+[Guard]
+iex(2)> Guard.what_is(99)
+99 is a number
+:ok
+iex(3)> Guard.what_is([1,2,3])
+[1, 2, 3] is a list
+:ok
+iex(4)> Guard.what_is(:abc)   
+abc is an atom
+:ok
+iex(5)> c "factorial2.exs"
+[Factorial]
+iex(6)> Factorial.of(-10)
+** (FunctionClauseError) no function clause matching in Factorial.of/1    
+    
+    The following arguments were given to Factorial.of/1:
+    
+        # 1
+        -10
+    
+    factorial2.exs:2: Factorial.of/1
+iex(6)> Factorial.of(10) 
+3628800
+
+```
+
+### Guard-Clause Limitations
+
+* Comparison operators: `==`, `!=`, `===`, `!==`, `>`, `<`, `<=`, `>=`
+* Boolean operators: `or`, `and`, `not`, `!` (`||` and `&&` are not allowed)
+* Join operators: `<>`, `++`
+* The `in` operator
+* Type-check functions: built-in Erlang functions such as `is_atom`, `is_binary` etc.
+* Other functions: built-in functions and custom guards
+
+<https://hexdocs.pm/elixir/guards.html>
