@@ -120,3 +120,48 @@ iex(6)> Factorial.of(10)
 * Other functions: built-in functions and custom guards
 
 <https://hexdocs.pm/elixir/guards.html>
+
+## Default Parameters
+
+```exs
+iex(1)> c "default_params.exs"
+[Example]
+iex(2)> Example.func("a", "b")
+["a", 2, 3, "b"]
+["a", 2, 3, "b"]
+iex(3)> Example.func("a", "b", "c")
+["a", "b", 3, "c"]
+["a", "b", 3, "c"]
+iex(4)> Example.func("a", "b", "c", "d")
+["a", "b", "c", "d"]
+["a", "b", "c", "d"]
+iex(5)> c "default_params1.exs"
+warning: variable "p1" is unused (if the variable is not meant to be used, prefix it with an underscore)
+  default_params1.exs:6: DefaultParams1.func/2
+
+warning: this clause cannot match because a previous clause at line 2 always matches
+  default_params1.exs:6
+
+iex(1)> c "default_params2.exs"
+[Params]
+iex(2)> Params.func(99)
+"You passed in 99 and 123"
+iex(3)> Params.func(99, "cat")
+"You passed in 99 and cat"
+iex(4)> Params.func([99])     
+"You said 123 with a list"
+iex(5)> Params.func([99], "cat")
+"You said cat with a list"
+
+iex(9)> c "ex6.exs"
+[Chop]
+iex(10)> Chop.guess(273,1..1000)
+Is it 500
+Is it 250
+Is it 375
+Is it 312
+Is it 281
+Is it 265
+273
+:ok
+```
