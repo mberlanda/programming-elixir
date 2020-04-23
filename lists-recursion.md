@@ -34,3 +34,20 @@ iex(2)> MyList.len([1,2,3])
 3
 ```
 
+## Using Head and Tail to Build a List
+
+```exs
+iex(3)> MyList.square([])
+[]
+iex(4)> MyList.square([1, 2.3, 5])
+[1, 5.289999999999999, 25]
+iex(5)> MyList.add_1([1, 2.3, 5]) 
+[2, 5.289999999999999, 25]
+```
+
+## Creating a Map Function
+
+```exs
+iex(7)> MyList.map([1,2,3,4], fn (n) -> n*n end)
+[1, 4, 9, 16]
+```
