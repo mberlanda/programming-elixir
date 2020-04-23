@@ -185,3 +185,37 @@ Three directive for modules:
 ## Module Attributes
 
 These attributes have the `@` syntax and should be used for configuration and metadata only.
+
+## Module Names: Elixir, Erlang, and Atoms
+
+Module names are just atoms prefixed by `Elixir.`:
+
+```exs
+iex(1)> is_atom IO
+true
+iex(2)> to_string IO
+"Elixir.IO"
+iex(3)> :"Elixir.IO" === IO
+true
+iex(4)> :"Elixir.IO".puts 1234
+1234
+:ok
+```
+
+## Calling a FUnction in an Erlang Library
+
+In Erlang modules are just atoms and they can be called as follows:
+
+```exs
+iex(1)> :timer.seconds(3)
+3000
+iex(2)> :io.format("The number is ~3.1f~n", [5.678])
+The number is 5.7
+:ok
+```
+
+## Finding Libraries
+
+* Elixir standard library: <https://elixir-lang.org/docs.html>
+* Hex - Erlang package manager: <https://hex.pm/>
+* Github and other repositories
