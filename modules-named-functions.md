@@ -181,3 +181,7 @@ Three directive for modules:
 * `import Module, [, only:|except:]`, providing `name: :arity`
 * `alias My.Other.Module.Parser, as: Parser` which can be abbreviated to something like `alias My.Other.Module.{Parser,Runner}`
 * `require`, which will be illustrated in another chapter
+
+## Module Attributes
+
+These attributes have the `@` syntax and should be used for configuration and metadata only.
