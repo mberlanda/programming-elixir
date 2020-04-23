@@ -24,3 +24,13 @@ iex(9)> head
 iex(10)> tail
 [2, 3]
 ```
+
+## Using Head and Tail to Process a List
+
+```exs
+iex(1)> c "lists-recursion/mylist.exs"
+[MyList]
+iex(2)> MyList.len([1,2,3])
+3
+```
+
