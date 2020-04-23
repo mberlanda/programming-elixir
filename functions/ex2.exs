@@ -5,7 +5,7 @@ fizzbuzz = fn
   {_, _, x} -> x
 end
 
-IO.puts fizzbuzz.({0, 0, :a})
-IO.puts fizzbuzz.({0, :a, :b})
-IO.puts fizzbuzz.({:a, 0, :b})
-IO.puts fizzbuzz.({:a, :b, :else})
+IO.puts(fizzbuzz.({0, 0, :a}))
+IO.puts(fizzbuzz.({0, :a, :b}))
+IO.puts(fizzbuzz.({:a, 0, :b}))
+IO.puts(fizzbuzz.({:a, :b, :else}))

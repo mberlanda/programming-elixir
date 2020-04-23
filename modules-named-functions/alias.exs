@@ -7,6 +7,7 @@ defmodule My do
           n
         end
       end
+
       defmodule Runner do
         def execute(int), do: int * int
       end
@@ -21,5 +22,5 @@ defmodule Example do
   end
 end
 
-IO.puts Example.run("123")
-IO.puts Example.run("4")
+IO.puts(Example.run("123"))
+IO.puts(Example.run("4"))
