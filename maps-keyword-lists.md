@@ -35,3 +35,36 @@ Map.has_key?(map1, :where)
 { value, updated_map } = Map.pop(map2, :also_likes)
 Map.equal?(map, updated_map)
 ```
+
+## Pattern Matching and Updating Maps
+
+```exs
+$ elixir maps/query.exs 
+[%{height: 1.88, name: "Dave"}, %{height: 2.16, name: "Shaquille"}]
+iex(3)> c "maps/book_room.exs"
+[HotelRoom]
+iex(4)> people |> Enum.each(&HotelRoom.book/1)
+Need low shower controls for Grumpy
+Need regular bed for Dave
+Need regular bed for Dopey
+Need extra long bed for Shaquille
+Need low shower controls for Sneezy
+:ok
+```
+
+### Pattern Matching Can't Bind Keys
+
+```exs
+%{2 => state } = %{ 1 => :ok, 2 => :error } # OK
+%{item => :ok } = %{ 1 => :ok, 2 => :error } # Not OK
+```
+
+### Pattern Matching Can Match Variable Keys
+
+```exs
+data = %{ name: "Dave", state: "TX", likes: "Elixir" }
+for key <- [ :name, :likes ] do
+    %{ ^key => value } = data
+    value
+end
+```
