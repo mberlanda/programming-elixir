@@ -51,3 +51,34 @@ iex(5)> MyList.add_1([1, 2.3, 5])
 iex(7)> MyList.map([1,2,3,4], fn (n) -> n*n end)
 [1, 4, 9, 16]
 ```
+
+## Reducing a List to a Single Value
+
+```exs
+iex(7)> MyList.reduce([1,2,3,4], 0, &(&1+&2))
+10
+# Exercise 1
+iex(8)> MyList.mapsum [1,2,3], &(&1*&1)
+14
+# Exercise 2
+iex(10)> MyList.max([5,7,1,-4])
+7
+iex(11)> MyList.max([5,7])     
+7
+iex(12)> MyList.max([-4]) 
+-4
+iex(13)> MyList.max([])  
+** (FunctionClauseError) no function clause matching in MyList.max/1    
+    
+    The following arguments were given to MyList.max/1:
+    
+        # 1
+        []
+    
+    lists-recursion/mylist.exs:22: MyList.max/1
+# Exercise 3
+iex(32)> MyList.caesar('ryvkve', 13)
+['?', '?', '?', 120, '?', 114]
+iex(33)> IO.puts MyList.caesar('ryvkve', 13)
+???x?r
+```
