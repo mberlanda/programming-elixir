@@ -20,3 +20,18 @@ Pattern: solid
 Style: ["italic", "bold"]
 :ok
 ```
+
+## Maps
+
+```exs
+map = %{ name: "Dave", likes: "Programming", where: "Dallas" }
+Map.keys(map) # [:likes, :name, :where]
+Map.values(map) # ["Programming", "Dave", "Dallas"]
+map[:name] # "Dave"
+map.name # "Dave"
+map1 = Map.drop(map, [:where, :likes])
+map2 = Map.put(map, :also_likes, "Ruby")
+Map.has_key?(map1, :where)
+{ value, updated_map } = Map.pop(map2, :also_likes)
+Map.equal?(map, updated_map)
+```
