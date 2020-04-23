@@ -27,4 +27,8 @@ defmodule MyList do
   def caesar([], _num), do: []
   def caesar([head | tail], num) when head + num < ?z, do: [head + num | caesar(tail, num)]
   def caesar([_head | tail], num), do: ['?' | caesar(tail, num)]
+
+  # Exercise 4
+  def span(from, to) when from > to, do: []
+  def span(from, to), do: [from | span(from + 1, to)]
 end

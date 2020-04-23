@@ -82,3 +82,54 @@ iex(32)> MyList.caesar('ryvkve', 13)
 iex(33)> IO.puts MyList.caesar('ryvkve', 13)
 ???x?r
 ```
+
+## More Complex List Patterns
+
+```exs
+iex(1)> c "lists-recursion/swap.exs"
+[Swapper]
+iex(2)> Swapper.swap([])
+[]
+iex(3)> Swapper.swap([1,2,3,4])
+[2, 1, 4, 3]
+iex(4)> Swapper.swap([1,2,3])  
+** (RuntimeError) Cannot swap a list with an odd number of elements
+    lists-recursion/swap.exs:4: Swapper.swap/1
+    lists-recursion/swap.exs:3: Swapper.swap/1
+```
+
+### List of Lists
+
+```exs
+iex(1)> c "lists-recursion/weather.exs"
+[WeatherHistory]
+iex(2)> import WeatherHistory
+WeatherHistory
+iex(3)> for_location_27(test_data)
+[[123456, 27, 15, 0.45], [234561, 27, 18, 0.645]] 
+# Excercise 4
+iex(1)> c "lists-recursion/mylist.exs"
+[MyList]
+iex(2)> MyList.span(4,3)
+[]
+iex(3)> MyList.span(3,3)
+[3]
+iex(4)> MyList.span(3,7)
+[3, 4, 5, 6, 7]
+```
+
+## The List Module in Action
+
+```exs
+[1,2,3] ++ [4,5,6] # Concatenate
+List.flatten([1,2,[3[4,5]],[6]])
+List.foldl([1,2,3],"", fn value, acc -> "#{value}(#{acc})" end) # 3(2(1()))
+List.foldr([1,2,3],"", fn value, acc -> "#{value}(#{acc})" end) # 1(2(3()))
+list = [ 1, 2, 3 ]
+List.replace_at(list, 2, "buckle my shoe")
+kw = [{:name, "Dave"}, {:likes, "Programming"}, {:where, "Dallas", "TX"}]
+List.keyfind(kw, "TX", 2)
+List.keyfind(kw, "TX", 1, "No city called TX")
+kw = List.keydelete(kw, "TX", 2)
+kw = List.keyreplace(kw, :name, 0, {:first_name, "Dave"})
+```
