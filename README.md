@@ -19,3 +19,4 @@ Hello, World!
 * [ch04 Elixir Basics](basic-types.md)
 * [ch05 Anonymous Functions](functions.md)
 * [ch06 Modules and Named Functions](modules-named-functions.md)
+* [ch07 Lists and Recursion](lists-recursion.md)

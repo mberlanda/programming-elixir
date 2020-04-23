@@ -2,6 +2,7 @@
 [
   inputs: [
     "{mix,.formatter}.exs",
-    "{basic-types,functions,intro,modules-named-functions}/**/*.{ex,exs}"
+    "{basic-types,functions,intro,modules-named-functions}/**/*.{ex,exs}",
+    "{lists-recursion}/**/*.{ex,exs}"
   ]
 ]
