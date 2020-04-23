@@ -165,3 +165,19 @@ Is it 265
 273
 :ok
 ```
+
+## The Amazing Pipe Operator: |>
+
+```exs
+(1..10)
+|> Enum.map(&(&1*&1))
+|> Enum.filter(&(&1 < 40))
+```
+
+## Modules
+
+Three directive for modules:
+
+* `import Module, [, only:|except:]`, providing `name: :arity`
+* `alias My.Other.Module.Parser, as: Parser` which can be abbreviated to something like `alias My.Other.Module.{Parser,Runner}`
+* `require`, which will be illustrated in another chapter
