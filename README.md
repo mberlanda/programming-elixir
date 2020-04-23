@@ -20,3 +20,4 @@ Hello, World!
 * [ch05 Anonymous Functions](functions.md)
 * [ch06 Modules and Named Functions](modules-named-functions.md)
 * [ch07 Lists and Recursion](lists-recursion.md)
+* [ch08 Maps, Keyword Lists, Sets, and Structs](maps-keyword-lists.md)
