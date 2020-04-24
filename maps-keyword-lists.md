@@ -68,3 +68,12 @@ for key <- [ :name, :likes ] do
     value
 end
 ```
+
+## Updating a Map
+
+```exs
+# Simplest way
+new_map = %{ old_map | key => value, ...}
+# This does not add a new keys
+Map.put_new/3
+```
