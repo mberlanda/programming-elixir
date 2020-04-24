@@ -138,3 +138,20 @@ update_in(report[:owner][:name], &("Mr. " <> &1))
 ### The Access Module
 
 <https://hexdocs.pm/elixir/1.10.2/Access.html#summary>
+
+## Sets
+
+```exs
+set1 = 1..5 |> Enum.into(MapSet.new())
+set2 = 3..8 |> Enum.into(MapSet.new())
+MapSet.member?(set1, 3)
+MapSet.union(set1, set2)
+MapSet.difference(set1, set2)
+MapSet.difference(set2, set1)
+MapSet.intersection(set2, set1)
+```
+
+## With Great Power Comes Great Temptation
+
+Don't use the Struct in an object-oriented way in order
+to avoid mixing paradigms.
