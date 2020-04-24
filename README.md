@@ -21,3 +21,4 @@ Hello, World!
 * [ch06 Modules and Named Functions](modules-named-functions.md)
 * [ch07 Lists and Recursion](lists-recursion.md)
 * [ch08 Maps, Keyword Lists, Sets, and Structs](maps-keyword-lists.md)
+* [ch09 An Aside—What Are Types?](aside-types.md)
