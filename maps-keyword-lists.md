@@ -100,3 +100,41 @@ Attendee.print_vip_badge(a2)
 a3 = %Attendee{}
 Attendee.print_vip_badge(a3)
 ```
+
+## Nested Dictionary Structures
+
+```exs
+report = %BugReport{
+  owner: %Customer{name: "Dave", company: "Pragmatic"},
+  details: "broken"
+}
+report.owner.company
+put_in(report.owner.company, "PragProg")
+# this macro is translated to
+report = %BugReport{
+  report | owner: %Customer{report.owner | company: "PragProg"}
+}
+# macro applying a function
+update_in(report.owner.name, &("Mr. " <> &1))
+```
+
+### Nested Accessors and Nonstructs
+
+```exs
+report = %{ owner: %{ name: "Dave", company: "Pragmatic" }, severity: 1}
+put_in(report[:owner][:company], "PragProg")
+update_in(report[:owner][:name], &("Mr. " <> &1))
+```
+
+### Dynamic (Runtime) Nested Accessors
+
+| | Macro | Function |
+|-|-------|----------|
+|`get_in`| no | (dict, keys)
+|`put_in`| (path, value) | (dict, keys, value)
+|`update_in`| (path, fn) | (dict, keys, fn)
+|`get_and_update_in`| (path, fn) | (dict, keys, fn)
+
+### The Access Module
+
+<https://hexdocs.pm/elixir/1.10.2/Access.html#summary>
