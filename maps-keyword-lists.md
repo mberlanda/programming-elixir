@@ -77,3 +77,26 @@ new_map = %{ old_map | key => value, ...}
 # This does not add a new keys
 Map.put_new/3
 ```
+
+## Structs
+
+```exs
+# c "maps/defstruct.exs"
+s1 = %Subscriber{}
+s2 = %Subscriber{ name: "Dave" }
+s3 = %Subscriber{ name: "Mary", paid: true }
+s3.name
+%Subscriber{name: a_name} = s3
+a_name
+s4 = %Subscriber{ s3 | name: "Marie"}
+```
+
+```exs
+a1 = %Attendee{name: "Dave", over_18: true}
+Attendee.may_attend_after_party(a1)
+a2 = %Attendee{a1 | paid: true}
+Attendee.may_attend_after_party(a2)
+Attendee.print_vip_badge(a2)
+a3 = %Attendee{}
+Attendee.print_vip_badge(a3)
+```
