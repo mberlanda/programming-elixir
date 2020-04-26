@@ -25,8 +25,12 @@ defmodule MyList do
   defp _split(list, _idx, acc), do: {acc, list}
 
   def take([], _), do: []
-  def take(list, 0), do: []
+  def take(_, 0), do: []
   def take([head | tail], idx) when idx > 0, do: [head | take(tail, idx - 1)]
+
+  def flatten([]), do: []
+  def flatten([head | tail]) when is_list(head), do: flatten(head) ++ flatten(tail)
+  def flatten([head | tail]), do: [head | flatten(tail)]
 end
 
 ExUnit.start()
@@ -39,7 +43,7 @@ defmodule ExampleTest do
 
   # doctest MyList
 
-  # ex. 6
+  # ex. 5
   test "all?" do
     assert(MyList.all?([], &(&1 < 5)) == Enum.all?([], &(&1 < 5)))
     assert(MyList.all?([1, 2, 3], &(&1 < 5)) == Enum.all?([1, 2, 3], &(&1 < 5)))
@@ -80,5 +84,18 @@ defmodule ExampleTest do
 
     assert(MyList.take([1, 2, 3], 1) == Enum.take([1, 2, 3], 1))
     assert(MyList.take([12, 1, 2, 25, 4], 3) == Enum.take([12, 1, 2, 25, 4], 3))
+  end
+
+  # ex. 6
+  test "flatten" do
+    assert(MyList.flatten([[1], 2, 3, [4, [5], 6], 7]) == [1, 2, 3, 4, 5, 6, 7])
+
+    list = [[1], 2, 3, [4, [5], 6], 7]
+
+    assert(MyList.flatten([]) == List.flatten([]))
+    assert(MyList.flatten([[[[]]]]) == List.flatten([[[[]]]]))
+    assert(MyList.flatten([[[[1]]]]) == List.flatten([[[[1]]]]))
+    assert(MyList.flatten([1, 2, 3]) == List.flatten([1, 2, 3]))
+    assert(MyList.flatten(list) == List.flatten(list))
   end
 end
