@@ -66,3 +66,83 @@ hands = deck |> shuffle |> chunk(13)
 ```
 
 `elixir enum/ex-mylist.exs`
+
+## Streams - Lazy Enumerables
+
+```
+$ elixir enum/pipeline.exs
+[1, 3, 7, 13, 21]
+$ elixir enum/longest_line.exs   
+electroencephalograph's
+```
+
+Both examples are suboptimal since each call to `Enum` is self-contained.
+We do not need to store the entire collection as an intermediary step.
+
+### A Stream is a Composable Enumerator
+
+```exs
+s = Stream.map [1, 3, 5, 7], &(&1 + 1)
+Enum.to_list s
+
+squares = Stream.map [1, 2, 3, 4], &(&1 * &1)
+plus_ones = Stream.map squares, &(&1 + 1)
+odds = Stream.filter plus_ones, fn x -> rem(x, 2) == 1 end
+Enum.to_list odds
+```
+
+### Infinite Streams
+
+```exs
+Enum.map(1..10_000_000, &(&1+1)) |> Enum.take(5) # Takes a few seconds
+Stream.map(1..10_000_000, &(&1+1)) |> Enum.take(5)
+```
+
+### Create Your Own Streams
+
+Helpful wrapping functions: `cycle`, `repeatedly`, `iterate`, `unfold`, `resource`
+
+```exs
+Stream.cycle(~w{ green white }) |>
+Stream.zip(1..5) |>
+Enum.map(fn {class, value} ->
+  "<tr class='#{class}'><td>#{value}</td></tr>\n" end) |>
+IO.puts
+
+Stream.repeatedly(fn -> true end) |> Enum.take(3)
+Stream.repeatedly(&:random.uniform/0) |> Enum.take(3)
+
+Stream.iterate(0, &(&1+1)) |> Enum.take(5)
+Stream.iterate(2, &(&1*&1)) |> Enum.take(5)
+Stream.iterate([], &[&1]) |> Enum.take(5)
+
+# fn state -> { state_value, new_value } end
+Stream.unfold({0,1}, fn {f1,f2} -> {f1, {f2, f1+f2}} end) |> Enum.take(15)
+
+# Perform unfold on real resources
+# * First argument a fn returning the value instead of value - need to listen for a while
+# * Need to close the stream
+# * Third argument takes the function to apply to the final accumulator value
+Stream.resource(
+  fn -> File.open!("README.md") end,
+  fn file ->
+    case IO.read(file, :line) do
+    data when is_binary(data) -> {[data], file}
+    _ -> {:halt, file}
+    end
+  end,
+  fn file -> File.close(file) end
+)
+```
+
+```exs
+# iex enum/countdown.exs
+counter = Countdown.timer
+printer = counter |> Stream.each(&IO.puts/1)
+speaker = printer |> Stream.each(&Countdown.say/1)
+speaker |> Enum.take(60)
+```
+
+### Streams in Practice
+
+Use streams to defer processing until the data is needed
