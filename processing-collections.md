@@ -146,3 +146,13 @@ speaker |> Enum.take(60)
 ### Streams in Practice
 
 Use streams to defer processing until the data is needed
+
+## The Collectable Protocol
+
+`Collectable` is the opposite of `Enum`: build collections inserting elements.
+
+```exs
+Enum.into 1..5, []
+Enum.into 1..5, [ 100, 101 ]
+Enum.into IO.stream(:stdio, :line), IO.stream(:stdio, :line)
+```
