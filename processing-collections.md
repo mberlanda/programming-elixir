@@ -156,3 +156,43 @@ Enum.into 1..5, []
 Enum.into 1..5, [ 100, 101 ]
 Enum.into IO.stream(:stdio, :line), IO.stream(:stdio, :line)
 ```
+
+## Comprehensions
+
+```exs
+for x <- [1, 2, 3, 4], do: x * x
+for x <- [1, 2, 3, 4], x < 4, do: x * x
+for x <- [1, 2], y <- [3, 4], do: x * y
+for x <- [1, 2], y <- [3, 4], do: {x, y}
+
+min_maxes = [{1, 4}, {2, 3}, {10, 15}]
+for {min, max} <- min_maxes, n <- min..max, do: n
+
+first8 = [1, 2, 3, 4, 5, 6, 7, 8]
+for x <- first8, y <- first8, x >= y, rem(x*y, 10) == 0, do: {x, y} 
+```
+
+### Comprehensions Work on Bits, Too
+
+```exs
+for << ch <- "hello" >>, do: ch
+for << ch <- "hello" >>, do: <<ch>>
+for << << b1::size(2), b2::size(3), b3::size(3) >> <- "hello" >>, do: "0#{b1}#{b2}#{b3}"
+```
+
+### Scoping and Comprehensions
+
+```exs
+name = "Dave"
+for name <- [ "cat", "dog" ], do: String.upcase(name)
+name
+```
+
+### The Value Returned by a Comprehension
+
+```exs
+for x <- ~w{ cat dog }, into: %{}, do: { x, String.upcase(x) }
+for x <- ~w{ cat dog }, into: Map.new, do: { x, String.upcase(x) }
+for x <- ~w{ cat dog }, into: %{"ant" => "ANT"}, do: { x, String.upcase(x) }
+for x <- ~w{ cat dog }, into: IO.stream(:stdio,:line), do: "<<#{x}>>\n"
+```

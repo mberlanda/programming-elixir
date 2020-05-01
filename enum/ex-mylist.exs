@@ -31,6 +31,14 @@ defmodule MyList do
   def flatten([]), do: []
   def flatten([head | tail]) when is_list(head), do: flatten(head) ++ flatten(tail)
   def flatten([head | tail]), do: [head | flatten(tail)]
+
+  # Exercise 7
+  def span(from, to) when from > to, do: []
+  def span(from, to), do: [from | span(from + 1, to)]
+
+  def primes(n) do
+    for x <- span(2, n), Enum.all?(MyList.span(2, x - 1), &(rem(x, &1) != 0)), do: x
+  end
 end
 
 ExUnit.start()
@@ -97,5 +105,12 @@ defmodule ExampleTest do
     assert(MyList.flatten([[[[1]]]]) == List.flatten([[[[1]]]]))
     assert(MyList.flatten([1, 2, 3]) == List.flatten([1, 2, 3]))
     assert(MyList.flatten(list) == List.flatten(list))
+  end
+
+  # ex. 7
+  test "primes" do
+    assert(MyList.primes(1) == [])
+    assert(MyList.primes(7) == [2, 3, 5, 7])
+    assert(MyList.primes(10) == [2, 3, 5, 7])
   end
 end
