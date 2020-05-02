@@ -22,3 +22,4 @@ Hello, World!
 * [ch07 Lists and Recursion](lists-recursion.md)
 * [ch08 Maps, Keyword Lists, Sets, and Structs](maps-keyword-lists.md)
 * [ch09 An Aside—What Are Types?](aside-types.md)
+* [ch10 Processing Collections—Enum and Stream](processing-collections.md)
